@@ -1,1 +1,27 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CougarBids</title>
+    <link rel="stylesheet" href="styles.css" />
+     <script src="script.js" ></script>
+  </head>
+  <body>
+      <h1>CougarBids!</h1>
+      <div class="tab">
+  <button class="button" onclick="myHome()">Home</button>
+  <button class="button" onclick="myUsername()">Username</button>
+  <button class="button" onclick="mySettings()">Settings</button>
+</div>
+      <ul>
+        <li>
+          <img src="image.jpg" alt="Description of image">
+        </li>
+        <li>
+          <img src="image.jpg" alt="Description of image">
+        </li>
+        <li>
+          <img src="image.jpg" alt="Description of image">
+        </li>
+      </ul>
+  </body>
+</html>
