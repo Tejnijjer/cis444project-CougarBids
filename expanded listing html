@@ -1,27 +1,63 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>CougarBids</title>
-    <link rel="stylesheet" href="styles.css" />
-     <script src="script.js" ></script>
-  </head>
-  <body>
-      <h1>CougarBids!</h1>
-      <div class="tab">
-  <button class="button" onclick="myHome()">Home</button>
-  <button class="button" onclick="myUsername()">Username</button>
-  <button class="button" onclick="mySettings()">Settings</button>
-</div>
-      <ul>
-        <li>
-          <img src="image.jpg" alt="Description of image">
-        </li>
-        <li>
-          <img src="image.jpg" alt="Description of image">
-        </li>
-        <li>
-          <img src="image.jpg" alt="Description of image">
-        </li>
-      </ul>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CougarBids - Item Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <button onclick="goToPage('username.html')">Username</button>
+        <button onclick="goToPage('home.html')">Home</button>
+        <button onclick="goToPage('settings.html')">Settings</button>
+        <button onclick="goToPage('cart.html')">Cart</button>
+    </nav>
+
+    <div class="container">
+
+        <!-- Left Section: Thumbnails and Main Image -->
+        <div class="image-gallery">
+            <div class="thumbnail-container">
+                <img src="image.jpg" alt="Thumbnail 1">
+                <img src="image.jpg" alt="Thumbnail 2">
+                <img src="image.jpg" alt="Thumbnail 3">
+            </div>
+            <div class="main-image-container">
+                <img src="image.jpg" alt="Main Image">
+                <div class="favorite-icon">❤️</div>
+            </div>
+        </div>
+
+        <!-- Right Section: Item Details -->
+        <div class="item-details">
+            <h1>Item Description</h1>
+            <div class="seller-info">
+                <p>Information regarding item</p>
+                <p><strong>Username</strong></p>
+                <p>Location/Building</p>
+            </div>
+            <div class="price-box">
+                <p>$$$$$ - Price</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="buttons">
+                <button class="buy">Buy Now</button>
+                <button class="offer">Offer</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
 </html>
