@@ -1,9 +1,9 @@
-
 /* General Page Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color: #222222;
 }
 
 /* Navigation Bar */
@@ -11,8 +11,8 @@ nav {
     display: flex;
     justify-content: space-around;
     padding: 10px;
-    background-color: #eee;
-    border-bottom: 2px solid black;
+    background-color: #3ab5e8;
+    border-bottom: 2px solid black
 }
 
 nav button {
@@ -72,6 +72,7 @@ nav button:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+ 
 }
 
 .favorite-icon {
@@ -86,6 +87,7 @@ nav button:hover {
 .item-details {
     flex-grow: 1;
     margin-left: 20px;
+  color: #222222;
 }
 
 .item-details h1 {
@@ -93,7 +95,9 @@ nav button:hover {
     border: 2px solid black;
     padding: 10px;
     display: inline-block;
+  color: #002e5a;
 }
 
 .seller-info {
-    border: 2px solid black
+    border: 2px solid black;
+      color:#222222; 
