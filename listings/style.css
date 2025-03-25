@@ -4,7 +4,9 @@
     position: absolute;
 }
 body{
+    font-family: Montserrat, serif;
     margin:0;
+    color: #222222;
 }
 #searchInput{
     text-align: center;
@@ -36,13 +38,11 @@ body{
 }
 
 .item-description {
-    color: #666;
     margin-bottom: 10px;
 }
 
 .item-price {
     font-weight: bold;
-    color: #333;
 }
 .item_box {
     background-color: white;
@@ -51,15 +51,37 @@ body{
     padding: 15px;
     text-align: center;
 }
+.listing-button{
+    background-color: transparent;
+    color: white;
+    border: none;
+    height: 290px;
+    width: 410px;
+    margin-left: -12%;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top:-16%;
+    position: absolute;
+}
 #profile{
     margin-left: 95%;
     margin-top: 1%;
     position: absolute;
 }
 #logo{
+    margin-left: 20px;
+    color: #3ab5e8;
+    font-family: Montserrat, serif;
     position: absolute;
-    font-size: 80px;
+    font-size: 70px;
 }
+.montserrat-font {
+                 font-family: "Montserrat", sans-serif;
+                 font-optical-sizing: auto;
+                 font-weight: 100;
+                 font-style: normal;
+             }
 #top_line {
     display: flex;
     margin-top: 6%;
@@ -68,7 +90,21 @@ body{
     height: 10px;
     width: 100%;
     position: absolute;
-    background-color: gray;
+    background-color: #bcbec0;
+}
+#addListing{
+    margin-left: 83%;
+    margin-top: 1%;
+    position: absolute;
+}
+#addListingButton{
+    background-color:  transparent;
+    width: 120px;
+    height:50px;
+    border: 1px solid #bcbec0;
+    border-radius: 8px;
+    position: absolute;
+    cursor: pointer;
 }
 #logoButton{
     background-color: transparent;
