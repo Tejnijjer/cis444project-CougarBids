@@ -21,9 +21,7 @@ window.onload = function(){
         var listingButton = document.createElement('item'+i);
 
         listingButton.className = 'listing-button';
-        listingButton.addEventListener('click', function () {
-            alert(this.tagName);
-        });
+        listingButton.addEventListener('click', listingClicked);
 
         itemBox.appendChild(itemImage);
         itemBox.appendChild(itemDescription);
@@ -31,6 +29,22 @@ window.onload = function(){
         itemBox.appendChild(listingButton);
         listings.appendChild(itemBox);
     }
-
+    document.getElementById('profileButton').addEventListener('click', goToProfile);
+    document.getElementById('addListingButton').addEventListener('click', addListing);
+    document.getElementById('logoButton').addEventListener('click', goToHome);
 }
+function listingClicked(){
+    alert(this.tagName);
+}
+function goToProfile(){
+    alert('Go to profile');
+}
+function addListing(){
+    alert('Add listing');
+}
+function goToHome(){
+    document.getElementById('listings').scrollTo(0,0)
+window.location.reload();
+}
+
 
