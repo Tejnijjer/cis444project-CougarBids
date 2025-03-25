@@ -18,15 +18,19 @@ window.onload = function(){
         itemPrice.className = 'item-price';
         itemPrice.textContent = 'Price';
 
-        var listingButton = document.createElement('button'+i);
+        var listingButton = document.createElement('item'+i);
+
         listingButton.className = 'listing-button';
+        listingButton.addEventListener('click', function () {
+            alert(this.tagName);
+        });
 
         itemBox.appendChild(itemImage);
         itemBox.appendChild(itemDescription);
         itemBox.appendChild(itemPrice);
         itemBox.appendChild(listingButton);
-
         listings.appendChild(itemBox);
     }
+
 }
 
