@@ -1,7 +1,7 @@
 
 window.onload = function(){
     //add database functionality here
-    for(let i=0; i<1000; i++){
+    for(let i=0; i<15; i++){
         var listings = document.getElementById('listings');
         var itemBox = document.createElement('div');
         itemBox.className = 'item_box';
@@ -46,5 +46,6 @@ function goToHome(){
     document.getElementById('listings').scrollTo(0,0)
 window.location.reload();
 }
+
 
 
