@@ -1,0 +1,113 @@
+
+/* --- BODY --- */
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #222222;
+}
+
+.montserrat-font {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #3ab5e8;
+    border-bottom: 2px solid black;
+}
+
+nav button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+nav button:hover {
+    text-decoration: underline;
+}
+
+/* --- SETTINGS CONTAINER --- */
+.settings-container {
+    display: flex;
+    margin: 20px;
+}
+
+/* --- LEFT CONTAINER SIDEBAR --- */
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid white;
+    background-color: white;
+}
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #3ab5e8;
+}
+
+
+.sidebar-leftside ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sidebar-leftside ul il {
+    margin-top: 12 px;
+    font-size:  16px;
+    cursor: pointer;
+    color: #222222
+}
+
+.main-form {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.main-form h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #3ab5e8
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 130px;
+    font-weight: 500;
+}
+
+.form-group input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid black;
+    font-family: "Montserrat", sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* --- DELETE BUTTON --- */
+#delete-button {
+    margin-top: 15px;
+    padding: 12px 24px;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
