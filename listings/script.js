@@ -89,10 +89,11 @@ window.onload = function(){
 }
 function listingClicked(){
     goToPage('/cis444project-CougarBids/expanded-listing/buying.html');
-    alert(this.tagName);
+
 }
 function goToProfile(){
-    alert('Go to profile');
+    goToPage('/cis444project-CougarBids/profile-page/index.html');
+
 }
 function addListing(){
     const modal = document.getElementById('createListingModal');
