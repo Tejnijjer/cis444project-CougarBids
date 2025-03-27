@@ -80,3 +80,6 @@ document.addEventListener('click', function(e) {
         document.querySelector('.dropdown-menu').style.display = 'none';
     }
 });
+function goToPage(page) {
+    window.location.href = page;
+}
