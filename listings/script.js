@@ -1,59 +1,22 @@
 
 window.onload = function(){
     //add database functionality here
-    for(let i=0; i<15; i++){
-        var listings = document.getElementById('listings');
-        var itemBox = document.createElement('div');
-        itemBox.className = 'item_box';
-
-        var itemImage = document.createElement('div');
-        itemImage.className = 'item-image';
-        itemImage.innerHTML='<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s" alt="Item Image">';
-        var itemDescription = document.createElement('div');
-        itemDescription.className = 'item-description';
-        itemDescription.textContent = 'Placeholder Item '+i;
-
-        var itemPrice = document.createElement('div');
-        itemPrice.className = 'item-price';
-        itemPrice.textContent = 'Price';
-
-        var listingButton = document.createElement('item'+i);
-
-        listingButton.className = 'listing-button';
-        listingButton.addEventListener('click', listingClicked);
-
-        var deleteButton = document.createElement('button');
-        deleteButton.className = 'delete-button';
-
-        //deleteButton.addEventListener('click', deleteListing);
-
-        var editButton = document.createElement('button');
-        editButton.className = 'edit-button';
-
-        var editIcon = document.createElement('img');
-        editIcon.src = 'edit.png';
-        editIcon.className = 'admin-edit-icon';
-        var deleteIcon = document.createElement('img');
-        deleteIcon.src = 'delete.png';
-        deleteIcon.className = 'admin-delete-icon';
-
-        itemBox.appendChild(itemImage);
-        itemBox.appendChild(itemDescription);
-        itemBox.appendChild(itemPrice);
-        itemBox.appendChild(listingButton);
-
-        editButton.appendChild(editIcon);
-        deleteButton.appendChild(deleteIcon);
 
 
-        itemBox.appendChild(deleteButton);
-        itemBox.appendChild(editButton);
-        listings.appendChild(itemBox);
-    }
+
+
     document.getElementById('profileButton').addEventListener('click', goToProfile);
     document.getElementById('addListingButton').addEventListener('click', addListing);
     document.getElementById('logoButton').addEventListener('click', goToHome);
-
+    $('.delete-button').click(function() {
+        $.ajax({
+            type: "POST",
+            url: "some.php",
+            data: { name: "John" }
+        }).done(function( msg ) {
+            alert( "Data Saved: " + msg );
+        });
+    });
 
     var checkbox = document.querySelector('input[type="checkbox"]');
 
