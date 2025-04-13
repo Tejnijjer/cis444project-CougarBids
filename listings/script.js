@@ -1,4 +1,7 @@
 
+
+
+
 window.onload = function(){
     //add database functionality here
 
@@ -8,18 +11,24 @@ window.onload = function(){
     document.getElementById('profileButton').addEventListener('click', goToProfile);
     document.getElementById('addListingButton').addEventListener('click', addListing);
     document.getElementById('logoButton').addEventListener('click', goToHome);
-    $('.delete-button').click(function() {
-        $.ajax({
-            type: "POST",
-            url: "some.php",
-            data: { name: "John" }
-        }).done(function( msg ) {
-            alert( "Data Saved: " + msg );
-        });
-    });
+
+
 
     var checkbox = document.querySelector('input[type="checkbox"]');
-
+    let a;
+    let b;
+    if (checkbox.checked) {
+        // do this
+        console.log('Checked');
+        a = document.getElementsByClassName('delete-button');
+        for (let i = 0; i < a.length; i++) {
+            a[i].style.display = 'inline-block';
+        }
+        b = document.getElementsByClassName('edit-button');
+        for (let i = 0; i < b.length; i++) {
+            b[i].style.display = 'inline-block';
+        }
+    }
     checkbox.addEventListener('change', function () {
         let a;
         let b;
@@ -47,7 +56,40 @@ window.onload = function(){
             console.log('Unchecked');
         }
     });
+    $("#searchInput").on('keyup', function (e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
 
+            console.log($(this).val());
+        }
+    });
+    $("#createForm").submit(function(event) {
+        var data = $(this).serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            console.log(item.name);
+            return obj;
+        }, {});
+
+        $.ajax({
+            type: "POST",
+            url: "addListing.php",
+            data: { title: data['title'], desc: data['desc'], price: data['price'], cat: data['cat']},
+        })
+    });
+    $('.delete-button').click(function() {
+
+        $.ajax({
+            type: "POST",
+            url: "adminDelete.php",
+            data: { id: $(this).parent().attr('id') },
+        }).done(function( msg ) {
+            window.location.reload();
+            console.log("Deleted listing with id: " + $(this).parent().attr('id'));
+        });
+
+
+
+        //alert($(this).parent().attr('id'));
+    });
 
 }
 function listingClicked(){

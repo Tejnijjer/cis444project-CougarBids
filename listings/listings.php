@@ -45,33 +45,9 @@
     </div>
 </div>
 <div id="listings">
+
     <?php
-    if(isset($_POST['SubmitButton'])){ //check if form was submitted
-        $servername = "localhost";
-        $username = "root";
-        $password = "4702";
-        $dbname = "listings";
 
-// Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "INSERT INTO listings (name, user_id, description,price,category)
-VALUES ('".$_POST["title"]."', '1','".$_POST["desc"]."','".$_POST["price"]."','".$_POST["cat"]."')";
-
-        if ($conn->query($sql) === TRUE) {
-//echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
-        $conn->close();
-    }
-    ?>
-    <?php
     $servername = "localhost";
     $username = "root";
     $password = "4702";
@@ -88,19 +64,19 @@ VALUES ('".$_POST["title"]."', '1','".$_POST["desc"]."','".$_POST["price"]."','"
     $sql = "SELECT id, name, user_id, description, price, created_at FROM listings";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "
-        <div class='item_box'>
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo "
+        <div class='item_box' id=' " . $row["id"] . "'>
             <div class='item-image'>
                 <img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s\" alt=\"Item \">
             </div>
             <div class='itemDescription'>
-                ".$row["name"]."
+                " . $row["name"] . "
             </div>
             <div class='item-price'>
-              ".$row["price"]."
+              " . $row["price"] . "
             </div>
             <button class='edit-button'>
             <img src='edit.png' alt='Edit' class='admin-edit-icon'>
@@ -114,9 +90,11 @@ VALUES ('".$_POST["title"]."', '1','".$_POST["desc"]."','".$_POST["price"]."','"
         
         
         ";
-        }
-    } else {
-        echo "0 results";
+            }
+
+        } else {
+            echo "0 results";
+
     }
     $conn->close();
 
@@ -125,13 +103,6 @@ VALUES ('".$_POST["title"]."', '1','".$_POST["desc"]."','".$_POST["price"]."','"
 
     ?>
 </div>
-
-
-
-
-
-
-
 <div id="createListingModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -139,7 +110,7 @@ VALUES ('".$_POST["title"]."', '1','".$_POST["desc"]."','".$_POST["price"]."','"
             <button class="close-btn" onclick="closeCreateListing()">&times;</button>
         </div>
 
-        <form action="" method="POST">
+        <form id="createForm">
             <div class="form-group">
                 <label for="title">Listing Title</label>
                 <input type="text" name="title" id="title" placeholder="Enter listing title" required>
