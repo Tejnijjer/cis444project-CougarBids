@@ -85,14 +85,91 @@ window.onload = function(){
             window.location.reload();
             console.log("Deleted listing with id: " + $(this).parent().attr('id'));
         });
-
-
-
         //alert($(this).parent().attr('id'));
+    });
+    window.closeCreateListing = function() {
+        document.getElementById('createListingModal').classList.remove('show');
+    };
+
+    window.closeEditListing = function() {
+        document.getElementById('editListingModal').classList.remove('show');
+    };
+
+    // Event listener for "Create Listing" button
+    $('#addListingButton').click(function() {
+        document.getElementById('createListingModal').classList.add('show');
+    });
+
+    // Event delegation for edit buttons
+    $(document).on('click', '.edit-button', function() {
+        const listingId = $(this).parent().attr('id');
+        fetchListingDetails(listingId);
+    });
+
+    // Function to fetch listing details
+    function fetchListingDetails(listingId) {
+        $.ajax({
+            url: 'get_listing_details.php',
+            type: 'GET',
+            data: { id: listingId },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Populate form fields with listing data
+                    $('#editListingId').val(response.listing.id);
+                    $('#editTitle').val(response.listing.name);
+                    $('#editDescription').val(response.listing.description);
+                    $('#editPrice').val(response.listing.price);
+
+                    // Set category if available
+                    if (response.listing.category) {
+                        $('#editCategory').val(response.listing.category);
+                    } else {
+                        $('#editCategory').val(''); // Default to empty if no category
+                    }
+
+                    // Show the edit modal
+                    document.getElementById('editListingModal').classList.add('show');
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function() {
+                alert('Error connecting to server. Please try again.');
+            }
+        });
+    }
+
+    // Handle edit form submission
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+
+        const formData = $(this).serialize();
+
+        $.ajax({
+            url: 'update_listing.php',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert('Listing updated successfully!');
+                    closeEditListing();
+                    // Reload the page to see the updated listing
+                    location.reload();
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function() {
+                alert('Error connecting to server. Please try again.');
+            }
+        });
     });
 
 }
 function listingClicked(){
+
     goToPage('/cis444project-CougarBids/expanded-listing/buying.html');
 
 }
@@ -101,19 +178,20 @@ function goToProfile(){
 
 }
 function addListing(){
-    const modal = document.getElementById('createListingModal');
-    modal.style.display = 'flex';
-}
-function closeCreateListing(){
-    const modal = document.getElementById('createListingModal');
-    modal.style.display = 'none';
+    document.getElementById('createListingModal').classList.add('show');
 }
 window.onclick = function(event) {
-    const modal = document.getElementById('createListingModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
+    const createModal = document.getElementById('createListingModal');
+    const editModal = document.getElementById('editListingModal');
+
+    if (event.target === createModal) {
+        closeCreateListing();
     }
-}
+
+    if (event.target === editModal) {
+        closeEditListing();
+    }
+};
 function goToHome(){
     document.getElementById('listings').scrollTo(0,0)
 window.location.reload();

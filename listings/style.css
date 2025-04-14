@@ -8,6 +8,16 @@ body{
     margin:0;
     color: #222222;
 }
+.no-results {
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 26px;
+    color: #666;
+}
 #searchInput{
     text-align: center;
     width: 800px;
@@ -135,7 +145,7 @@ body{
 #profileButton:hover{
 }
 .modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -144,6 +154,11 @@ body{
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
+}
+
+/* When the modal is shown, add flex display with centering */
+.modal.show {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -158,6 +173,8 @@ body{
     overflow-y: auto;
     position: relative;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* Remove any automatic margin adjustments that might be interfering */
+    margin: auto;
 }
 
 .modal-header {
