@@ -13,13 +13,16 @@
     }
 
     $sql = "INSERT INTO listings (name, user_id, description,price,category)
-VALUES ('".$_POST["title"]."', '1','".$_POST["desc"]."','".$_POST["price"]."','".$_POST["cat"]."')";
+VALUES ('".$_POST["title"]."','1','".$_POST["desc"]."','".$_POST["price"]."','".$_POST["cat"]."')";
+
+
+
 
     if ($conn->query($sql) === TRUE) {
-//echo "New record created successfully";
+    //echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $conn->close();
-?>
+

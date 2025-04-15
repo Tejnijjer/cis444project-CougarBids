@@ -63,6 +63,7 @@ window.onload = function(){
         }
     });
     $("#createForm").submit(function(event) {
+        event.preventDefault();
         var data = $(this).serializeArray().reduce(function(obj, item) {
             obj[item.name] = item.value;
             console.log(item.name);
@@ -73,7 +74,14 @@ window.onload = function(){
             type: "POST",
             url: "addListing.php",
             data: { title: data['title'], desc: data['desc'], price: data['price'], cat: data['cat']},
-        })
+        }).done(function( msg ) {
+            document.getElementById('createListingModal').classList.remove('show');
+            window.location.reload();
+        });
+
+
+
+
     });
     $('.delete-button').click(function() {
 
@@ -169,7 +177,6 @@ window.onload = function(){
 
 }
 function listingClicked(){
-
     goToPage('/cis444project-CougarBids/expanded-listing/buying.html');
 
 }
