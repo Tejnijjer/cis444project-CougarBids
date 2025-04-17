@@ -14,8 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
         if (password_verify($pass, $row['password'])) {
-            echo "Login successful! Welcome, $user.";
-            // session_start(); $_SESSION['user'] = $user;
+            if ($row['is_admin']) {
+                echo "Welcome, admin $user!";
+            } else {
+                echo "Login successful. Welcome, $user!";
+            }
         } else {
             echo "Invalid password.";
         }
