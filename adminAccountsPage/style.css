@@ -1,0 +1,59 @@
+
+body{
+    font-family: Montserrat, serif;
+    margin:0;
+    color: #222222;
+}
+#table{
+    position: absolute;
+    margin-top: 7.5%;
+    margin-left: 39%;
+}
+.no-results {
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 26px;
+    color: #666;
+}
+#adminText{
+    position: absolute;
+    margin-top: 2%;
+    margin-left: 40%;
+    font-size: 50px;
+    color: #3ab5e8;
+}
+#logo{
+    margin-left: 20px;
+    color: #3ab5e8;
+    font-family: Montserrat, serif;
+    position: absolute;
+    font-size: 70px;
+}
+.montserrat-font {
+                 font-family: "Montserrat", sans-serif;
+                 font-weight: 100;
+                 font-style: normal;
+             }
+#top_line {
+    display: flex;
+    margin-top: 6%;
+    align-items: center;
+    justify-content: center;
+    height: 10px;
+    width: 100%;
+    position: absolute;
+    background-color: #bcbec0;
+}
+
+#logoButton{
+    background-color: transparent;
+    width: 400px;
+    height:90px;
+    border: 5px red;
+    position: absolute;
+    cursor: pointer;
+}
