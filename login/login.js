@@ -1,32 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const usernameInput = document.querySelector("input[type='text']");
-    const passwordInput = document.querySelector("input[type='password']");
-    
+    const usernameInput = document.querySelector("#create_form input[name='username']");
+    const passwordInput = document.querySelector("#create_form input[name='password']");
+    const createButton = document.getElementById("create_button");
+
     // Set max character lengths
     const maxUsernameLength = 15;
     const maxPasswordLength = 20;
 
-    // Restrict username input length
-    usernameInput.addEventListener("input", function () {
-        if (this.value.length > maxUsernameLength) {
-            this.value = this.value.substring(0, maxUsernameLength);
+    function validatelength(event) {
+        // Restrict username length
+        if (usernameInput.value.length > maxUsernameLength) {
+            usernameInput.value = usernameInput.value.substring(0, maxUsernameLength);
         }
 
-        if (this.value.length < 8){
+        // Restrict password length
+        if (passwordInput.value.length > maxPasswordLength) {
+            passwordInput.value = passwordInput.value.substring(0, maxPasswordLength);
+        }
+
+        // Check username length
+        if (usernameInput.value.length < 5) {
+            alert("Username must be at least 5 characters long.");
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        // Check password length
+        if (passwordInput.value.length < 8) {
             alert("Password must be at least 8 characters long.");
+            event.preventDefault(); // Prevent form submission
         }
-    });
+    }
 
-    // Restrict password input length
-    passwordInput.addEventListener("input", function () {
-        if (this.value.length > maxPasswordLength) {
-            this.value = this.value.substring(0, maxPasswordLength);
-        }
-
-        if (this.value.length < 8){
-            alert("Password must be at least 8 characters long.");
-        }
-    });
-
-    submit.addEventListener("click", );
+    createButton.addEventListener("click", validatelength);
 });
