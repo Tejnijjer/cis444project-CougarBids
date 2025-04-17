@@ -6,9 +6,8 @@ $username = "root";
 $password = "4702";
 $dbname = "listings";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -84,7 +83,6 @@ if ($user_id > 0) {
 
 </div>
 <div id="listings">
-
     <?php
     $search_term = "";
     $category_filter = isset($_GET['categoryFilter']) ? $conn->real_escape_string($_GET['categoryFilter']) : "";
@@ -115,7 +113,7 @@ if ($user_id > 0) {
             $img_src = $img_row ? $img_row["image_path"] : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s";
 
             echo "
-        <div class='item_box' id='" . $listingId . "'>
+        <div class='item_box' id='" . $listingId . "' onclick='goToListing(" . $listingId . ")'>
             <div class='item-image'>
                 <img src='" . htmlspecialchars($img_src) . "' alt='Item'>
             </div>
