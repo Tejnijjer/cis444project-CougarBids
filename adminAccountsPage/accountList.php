@@ -35,22 +35,21 @@ $username = "root";
 $password = "4702";
 $dbname = "listings";
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if search parameter exists
-    // Default SQL to get all listings
+
     $sql = "SELECT id, name, id, name, password, isAdmin FROM users";
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Output data of each row
+
     while ($row = $result->fetch_assoc()) {
         echo "
             <div class='userTable'>

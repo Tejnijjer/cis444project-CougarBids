@@ -1,13 +1,13 @@
 <?php
-//check if form was submitted
+
 $servername = "localhost";
 $username = "root";
 $password = "4702";
 $dbname = "listings";
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

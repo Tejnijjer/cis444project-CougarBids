@@ -63,7 +63,6 @@ window.onload = function () {
             dataType: 'json',
             success: function (response) {
                 if (response.success) {
-                   // alert('Listing updated successfully!');
                     closeEditListing();
                     location.reload();
                 } else {

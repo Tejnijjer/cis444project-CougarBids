@@ -1,40 +1,40 @@
 <?php
-// File: addListing.php - Handles new listing creation with single image upload
+
 
 $servername = "localhost";
 $username = "root";
 $password = "4702";
 $dbname = "listings";
 
-// Create DB connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die(json_encode(['success' => false, 'message' => "Connection failed: " . $conn->connect_error]));
 }
 
 $response = ['success' => false, 'message' => 'An error occurred'];
 
-// Handle POST request
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Sanitize input
+
     $title = isset($_POST['title']) ? $conn->real_escape_string($_POST['title']) : '';
     $description = isset($_POST['desc']) ? $conn->real_escape_string($_POST['desc']) : '';
     $price = isset($_POST['price']) ? floatval($_POST['price']) : 0;
     $category = isset($_POST['cat']) ? $conn->real_escape_string($_POST['cat']) : '';
 
-    // Example: Replace this with actual logged-in user ID later
+
     $user_id = 1;
 
-    // Insert into listings table
+
     $sql = "INSERT INTO listings (name, user_id, description, price, category, created_at)
             VALUES ('$title', '$user_id', '$description', '$price', '$category', NOW())";
 
     if ($conn->query($sql) === TRUE) {
         $new_listing_id = $conn->insert_id;
 
-        // === Image Handling ===
+
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $upload_dir = "listingImages/listing_" . $new_listing_id . "/";
 
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 mkdir($upload_dir, 0777, true);
             }
 
-            // Generate unique file name
+
             $original_name = basename($_FILES['image']['name']);
             $extension = pathinfo($original_name, PATHINFO_EXTENSION);
             $file_name = "img_" . time() . "." . $extension;
@@ -70,8 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $response = ['success' => false, 'message' => 'Invalid request method'];
 }
 
-// Close DB connection and return JSON
+
 $conn->close();
 header('Content-Type: application/json');
 echo json_encode($response);
-?>
+
