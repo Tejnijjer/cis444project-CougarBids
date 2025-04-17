@@ -1,5 +1,4 @@
 <?php
-// update_listing.php - Script to update listing details with image replacement
 
 $servername = "localhost";
 $username = "root";
@@ -20,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     $category = isset($_POST['cat']) ? $conn->real_escape_string($_POST['cat']) : '';
     $caption = isset($_POST['imageCaption']) ? $conn->real_escape_string($_POST['imageCaption']) : '';
 
-    // Update listing data
     $sql = "UPDATE listings SET 
                 name = '$title', 
                 description = '$description', 
@@ -34,25 +32,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         exit;
     }
 
-    // Handle image replacement
     if (isset($_FILES['newImage']) && $_FILES['newImage']['error'] === UPLOAD_ERR_OK) {
-        // 1. Get the existing image path to delete
         $img_result = $conn->query("SELECT id, image_path FROM listing_images WHERE listing_id = $id LIMIT 1");
         if ($img_result && $img_result->num_rows > 0) {
             $img_row = $img_result->fetch_assoc();
             $existingImageId = $img_row['id'];
             $existingImagePath = $img_row['image_path'];
 
-            // Delete file if it exists
             if (file_exists($existingImagePath)) {
                 unlink($existingImagePath);
             }
 
-            // Remove the old record from DB
             $conn->query("DELETE FROM listing_images WHERE id = $existingImageId");
         }
 
-        // 2. Upload the new image
         $uploadDir = "listingImages/listing_$id/";
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);

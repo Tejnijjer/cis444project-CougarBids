@@ -23,7 +23,6 @@ if ($user_id > 0) {
         $isAdmin = $row['isAdmin'] == 1;
     }
 }
-$isAdmin=true; // For testing purposes, set isAdmin to true
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,11 +38,24 @@ $isAdmin=true; // For testing purposes, set isAdmin to true
 <body>
 <div id="topBar">
     <div id="searchBar">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
-            <label for="searchInput"></label>
-            <input type="text" id="searchInput" name="search" placeholder="Search for items"
-                   value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-            <button type="submit" id="searchButton"></button>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET" id="searchForm">
+            <div class="search-container">
+                <input type="text" id="searchInput" name="search" placeholder="Search for items"
+                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit" id="searchButton"></button>
+            </div>
+
+            <div class="category-container">
+                <label for="categoryFilter">Filter by Category:</label>
+                <select name="categoryFilter" id="categoryFilter" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    <option value="electronics" <?php if(isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == 'electronics') echo 'selected'; ?>>Electronics</option>
+                    <option value="clothing" <?php if(isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == 'clothing') echo 'selected'; ?>>Clothing</option>
+                    <option value="books" <?php if(isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == 'books') echo 'selected'; ?>>Books</option>
+                    <option value="furniture" <?php if(isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == 'furniture') echo 'selected'; ?>>Furniture</option>
+                    <option value="other" <?php if(isset($_GET['categoryFilter']) && $_GET['categoryFilter'] == 'other') echo 'selected'; ?>>Other</option>
+                </select>
+            </div>
         </form>
     </div>
 
@@ -75,12 +87,20 @@ $isAdmin=true; // For testing purposes, set isAdmin to true
 
     <?php
     $search_term = "";
-    if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $category_filter = isset($_GET['categoryFilter']) ? $conn->real_escape_string($_GET['categoryFilter']) : "";
+
+    $conditions = [];
+    if (!empty($_GET['search'])) {
         $search_term = $conn->real_escape_string($_GET['search']);
-        $sql = "SELECT id, name, user_id, description, price, created_at FROM listings WHERE name LIKE '%$search_term%'";
-    } else {
-        $sql = "SELECT id, name, user_id, description, price, created_at FROM listings";
+        $conditions[] = "name LIKE '%$search_term%'";
     }
+    if (!empty($category_filter)) {
+        $conditions[] = "category = '$category_filter'";
+    }
+
+    $condition_sql = count($conditions) > 0 ? "WHERE " . implode(" AND ", $conditions) : "";
+
+    $sql = "SELECT id, name, user_id, description, price, category, created_at FROM listings $condition_sql";
 
     $result = $conn->query($sql);
 
@@ -123,11 +143,7 @@ $isAdmin=true; // For testing purposes, set isAdmin to true
 
     $conn->close();
     ?>
-    <!-- Modals remain unchanged -->
-
-
     <div id="createListingModal" class="modal">
-    <!-- Modal content remains the same -->
     <div class="modal-content">
         <div class="modal-header">
             <div class="logo">Create Listing</div>
