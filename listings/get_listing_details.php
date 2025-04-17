@@ -24,12 +24,25 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
-        // Get the listing data
         $listing = $result->fetch_assoc();
+
+        // Get the image for this listing
+        $img_sql = "SELECT id, image_path, caption FROM listing_images 
+                WHERE listing_id = $listing_id ORDER BY display_order ASC LIMIT 1";
+        $img_result = $conn->query($img_sql);
+        $image = null;
+
+        if ($img_result && $img_result->num_rows > 0) {
+            $image = $img_result->fetch_assoc();
+        }
+
+        // Add image to listing array
+        $listing['image'] = $image;
+
         echo json_encode(['success' => true, 'listing' => $listing]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Listing not found']);
     }
+
+
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid listing ID']);
 }
