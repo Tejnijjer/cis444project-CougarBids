@@ -351,7 +351,9 @@ function goToPage(page) {
 function addListing() {
     document.getElementById('createListingModal').classList.add('show');
 }
-
+function goToListing(listingId) {
+    window.location.href = `/cis444project-CougarBids/ItemPurchase/buying.html?listingID=${listingId}`;
+}
 function fetchListingDetails(listingId) {
     $.ajax({
         url: 'get_listing_details.php',
