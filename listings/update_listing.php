@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 name = '$title', 
                 description = '$description', 
                 price = '$price', 
-                category = '$category'
+                category = '$category',
+                created_at = NOW()
             WHERE id = $id";
 
     if (!$conn->query($sql)) {

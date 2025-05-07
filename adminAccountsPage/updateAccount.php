@@ -11,7 +11,7 @@ $id = intval($_POST['id']);
 $newUsername = $conn->real_escape_string($_POST['username']);
 $isAdmin = intval($_POST['isAdmin']);
 
-$sql = "UPDATE users SET username='$newUsername', isAdmin=$isAdmin WHERE id=$id";
+$sql = "UPDATE users SET username='$newUsername', isAdmin=$isAdmin, created_at=NOW() WHERE id=$id";
 $conn->query($sql);
 $conn->close();
 ?>
