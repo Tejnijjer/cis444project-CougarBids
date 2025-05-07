@@ -338,7 +338,7 @@ function injectDynamicStyles() {
 }
 
 function goToProfile() {
-    goToPage('/cis444project-CougarBids/profile-page/index.html');
+    goToPage('/cis444project-CougarBids/profile-page/index.php');
 }
 
 function goToHome() {

@@ -2,6 +2,7 @@
 // NAVIGATION 
 function goToPage(page) {
     window.location.href = page;
+
 }
 
 
@@ -38,4 +39,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
     }
+
 });
