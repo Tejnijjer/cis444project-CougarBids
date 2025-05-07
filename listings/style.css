@@ -347,6 +347,15 @@ body{
     height: 30px;
     width: 30px;
 }
+.logo-button{
+    background-color: transparent;
+    width: 200px;
+    height:80px;
+    margin-top: -20px;
+    border: 5px red;
+    position: absolute;
+    cursor: pointer;
+}
 .edit-button{
     background-color: transparent;
     color: white;
