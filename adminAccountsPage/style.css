@@ -57,3 +57,113 @@ body{
     position: absolute;
     cursor: pointer;
 }
+
+#editAccountModal.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+#editAccountModal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#editAccountModal .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: auto;
+}
+
+
+#editAccountModal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+
+#editAccountModal .modal-header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3ab5e8;
+}
+
+#editAccountModal .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+#editAccountModal .close-btn:hover {
+    color: #000;
+}
+
+
+#editAccountModal .form-group {
+    margin-bottom: 20px;
+}
+
+#editAccountModal .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+#editAccountModal .form-group input,
+#editAccountModal .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#editAccountModal .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#editAccountModal .submit-btn:hover {
+    background-color: #0056b3;
+}
+#backButton {
+    padding: 10px 15px;
+    background-color: #2b70d9;
+    color: white;
+    border: none;
+    margin-left: 73%;
+    margin-top: 1.4%;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

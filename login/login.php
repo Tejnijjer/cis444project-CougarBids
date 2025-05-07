@@ -1,5 +1,6 @@
 <?php
-require 'db.php';
+global $conn;
+require 'login_db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $_POST['username'];

@@ -11,7 +11,8 @@ window.onload = function () {
         }
     });
 
-    $('.delete-button').click(function () {
+    $('.delete-button').click(function (e) {
+        e.stopPropagation();
         $.ajax({
             type: "POST",
             url: "adminDelete.php",
@@ -33,7 +34,8 @@ window.onload = function () {
         document.getElementById('createListingModal').classList.add('show');
     });
 
-    $(document).on('click', '.edit-button', function () {
+    $('.edit-button').click(function (e) {
+        e.stopPropagation();
         const listingId = $(this).parent().attr('id');
         fetchListingDetails(listingId);
     });

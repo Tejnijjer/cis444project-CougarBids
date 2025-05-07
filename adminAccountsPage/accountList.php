@@ -20,12 +20,15 @@
     <div id="search">
         <hr id="top_line">
     </div>
+    <button onclick="window.location.href='../listings/listings.php'" id="backButton">
+        Go Back
+    </button>
 </div>
 <table id="table">
     <tr>
         <th>User ID</th>
         <th>Name</th>
-        <th>Password</th>
+
         <th>Admin</th>
     </tr>
 <?php
@@ -44,7 +47,7 @@ if ($conn->connect_error) {
 }
 
 
-    $sql = "SELECT id, name, id, name, password, isAdmin FROM users";
+    $sql = "SELECT id,username, password, isAdmin FROM users";
 
 $result = $conn->query($sql);
 
@@ -56,10 +59,19 @@ if ($result->num_rows > 0) {
                  
                     <tr>
                         <td>" . $row["id"] . "</td>
-                        <td>" . htmlspecialchars($row["name"]) . "</td>
-                        <td>" . htmlspecialchars($row["password"]) . "</td>
+                        <td>" . htmlspecialchars($row["username"]) . "</td>
+                      
                         <td>" . ($row["isAdmin"] ? "Yes" : "No") . "</td>
                         <td> <button class='delete_account_button' id=" . $row["id"] . ">Delete</button></td>
+                        <td>
+                            <button class='edit_account_button' 
+                            data-id='" . $row["id"] . "'
+                            data-username='" . htmlspecialchars($row["username"]) . "'
+                            data-admin='" . $row["isAdmin"] . "'>
+                            Edit
+                            </button>
+</td>
+
                     </tr>
                 
             </div>";
@@ -73,5 +85,34 @@ $conn->close();
 
 ?>
 </table>
+<div id="editAccountModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="logo">Edit Account</div>
+            <button class="close-btn" onclick="closeEditAccount()">&times;</button>
+        </div>
+
+        <form id="editAccountForm">
+            <input type="hidden" id="editUserId" name="id">
+
+            <div class="form-group">
+                <label for="editUsername">Username</label>
+                <input type="text" name="username" id="editUsername" placeholder="Enter username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="editIsAdmin">Admin Status</label>
+                <select name="isAdmin" class="category-select" id="editIsAdmin" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Save Changes</button>
+        </form>
+    </div>
+</div>
+
 </body>
+
 </html>
